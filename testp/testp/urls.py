@@ -20,8 +20,13 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 
+from testp import views
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^chart', TemplateView.as_view(template_name = "chart1.html")),
+    url(r'^chart/?$', TemplateView.as_view(template_name = "chart1.html")),
+    url(r'^chart2/?', TemplateView.as_view(template_name = "chart2.html")),
+    url(r'^marital_data/?', views.get_marital_json),
+    url(r'^industry_data/?', views.get_industry_json),
     url(r'^index/', TemplateView.as_view(template_name = "index.html")),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
